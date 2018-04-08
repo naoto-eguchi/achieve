@@ -1,0 +1,20 @@
+<h1>ブログ一覧</h1>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th></th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= link_to '詳細を確認する', blog_path(blog.id)%></td>
+    <td><%= link_to 'ブロクを編集する', edit_blog_path(blog.id)%></td>
+    <td><%= link_to 'ブロクを削除する', blog_path(blog.id), method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'ブログ作成画面にもどる', new_blog_path %>
