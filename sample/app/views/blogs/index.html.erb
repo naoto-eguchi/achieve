@@ -1,20 +1,18 @@
-<h1>ブログ一覧</h1>
+<h1>Listing Blogs</h1>
 
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th></th>
-  </tr>
+<div id="new-blog-link">
+  <%= link_to '新規ブログを作成する', new_blog_path %>
+</div>
 
 <% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.title %></td>
-    <td><%= blog.content %></td>
-    <td><%= link_to '詳細を確認する', blog_path(blog.id)%></td>
-    <td><%= link_to 'ブロクを編集する', edit_blog_path(blog.id)%></td>
-    <td><%= link_to 'ブロクを削除する', blog_path(blog.id), method: :delete %></td>
-  </tr>
+  <div class="blog-panel">
+    <h2><%= blog.title %></h2>
+    <p><%= blog.content %></p>
+    <p><%= blog.created_at %></p>
+    <div class="blog-links">
+      <%= link_to 'Show', blog %>
+      <%= link_to 'Edit', edit_blog_path(blog) %> |
+      <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
 <% end %>
-</table>
-
-<%= link_to 'ブログ作成画面にもどる', new_blog_path %>
